@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuerySaveApp", "QuerySaveApp\QuerySaveApp.csproj", "{860FAC73-5B96-4FF7-A7E7-F98E6B874573}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{860FAC73-5B96-4FF7-A7E7-F98E6B874573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{860FAC73-5B96-4FF7-A7E7-F98E6B874573}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{860FAC73-5B96-4FF7-A7E7-F98E6B874573}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{860FAC73-5B96-4FF7-A7E7-F98E6B874573}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFBCD4C2-D4FF-4EA5-8C79-BA862AAEF79C}
+	EndGlobalSection
+EndGlobal
