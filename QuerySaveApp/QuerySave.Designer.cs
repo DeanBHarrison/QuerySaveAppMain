@@ -42,7 +42,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(864, 328);
+            this.dataGridView1.Size = new System.Drawing.Size(1124, 328);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick_1);
             // 
@@ -50,13 +50,13 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(12, 346);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(864, 308);
+            this.richTextBox1.Size = new System.Drawing.Size(1246, 333);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(882, 12);
+            this.button2.Location = new System.Drawing.Point(1142, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(116, 39);
             this.button2.TabIndex = 3;
@@ -69,12 +69,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1010, 666);
+            this.ClientSize = new System.Drawing.Size(1270, 677);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dataGridView1);
             this.Name = "QuerySave";
             this.Text = "Query Save App";
+            this.Load += new System.EventHandler(this.QuerySave_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

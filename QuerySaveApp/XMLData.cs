@@ -11,10 +11,11 @@ namespace QuerySaveApp
     public static class XMLData
     {
         
-        public static string getFilePath()
+        public static string getFilePath(int file)
         {
 
             string filePath = Environment.CurrentDirectory + @"\xmldata.xml";
+            string filePath 2= Environment.CurrentDirectory + @"\xmldata2.xml";
             return filePath;
         }
 

@@ -21,7 +21,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.96.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="GXOMIClassLibrary">
+      <HintPath>..\..\GXOMIClassLibrary\GXOMIClassLibrary\bin\Release\net6.0\GXOMIClassLibrary.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

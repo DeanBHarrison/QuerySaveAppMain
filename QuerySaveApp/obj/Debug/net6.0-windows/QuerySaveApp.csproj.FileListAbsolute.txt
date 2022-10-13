@@ -24,3 +24,9 @@ C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-wind
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.csproj.ResolveComReference.cache
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.QuerySave.resources
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.csproj.CopyComplete
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\ClosedXML.dll
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\DocumentFormat.OpenXml.dll
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\GXOMIClassLibrary.dll
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\GXOMIClassLibrary.pdb
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.Form2.resources

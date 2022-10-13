@@ -55,5 +55,39 @@ namespace QuerySaveApp
             //inputtablecombobox.ValueMember = "field";
             datagrid.Columns.Add(inputtablecombobox);   
         }
+
+        public  void SetColumnsOrder(DataGridView datagrid, params String[] columnNames)
+        {
+            int columnIndex = 0;
+            foreach (var columnName in columnNames)
+            {
+                datagrid.Columns[columnName].DisplayIndex = columnIndex;
+                columnIndex++;
+            }
+        }
+
+        
+        public void LoadButtons(DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.RowCount; i++)
+            {
+
+                for (int j = 0; j < dataGridView.ColumnCount; j++)
+                {
+                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Browse" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Run")
+                    {
+                        //richTextBox1.AppendText(dataGridView.Rows[i].Cells[j].Value.ToString());
+                        // Here is the trick.
+                        var btnCell = new DataGridViewButtonCell();
+                        dataGridView.Rows[i].Cells[j] = btnCell;
+                    }
+                }
+            }
+        }
+
+
+
+      
+
     }
 }

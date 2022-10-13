@@ -21,7 +21,6 @@ namespace QuerySaveApp
             //open connection to SQL server
             connection.Open();
 
-
             //Create data adaptor
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
 
