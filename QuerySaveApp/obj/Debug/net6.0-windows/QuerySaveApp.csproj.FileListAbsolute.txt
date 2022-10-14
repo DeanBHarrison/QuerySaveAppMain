@@ -29,4 +29,4 @@ C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-wind
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\ExcelNumberFormat.dll
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\GXOMIClassLibrary.dll
 C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\bin\Debug\net6.0-windows\GXOMIClassLibrary.pdb
-C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.Form2.resources
+C:\Users\harrisonde\source\repos\QuerySaveApp\QuerySaveApp\obj\Debug\net6.0-windows\QuerySaveApp.Settings.resources

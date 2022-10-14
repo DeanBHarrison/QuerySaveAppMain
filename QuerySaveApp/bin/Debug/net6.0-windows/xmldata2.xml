@@ -1,7 +1,7 @@
 <?xml version="1.0" standalone="yes"?>
 <Authors_Table>
   <authors>
-    <Stored_Procedure>gxo.sp_vba_automation_optimisation_MI040</Stored_Procedure>
+    <Data_Dump_Worksheet_name>test</Data_Dump_Worksheet_name>
     <Save_location>C:\Users\harrisonde\OneDrive - GXO\Desktop\Test\dicks</Save_location>
     <Browse_Save>Browse</Browse_Save>
     <Load_location>C:\Users\harrisonde\OneDrive - GXO\Desktop\Test\dicks</Load_location>
@@ -9,11 +9,11 @@
     <Run>Run</Run>
   </authors>
   <authors>
-    <Stored_Procedure>gxo.sp_orderconsolidation</Stored_Procedure>
+    <Data_Dump_Worksheet_name>gxo.sp_vba_automation_optimisation_MI040</Data_Dump_Worksheet_name>
     <Save_location>C:\Users\harrisonde\OneDrive - GXO\Desktop\Test\dfgdfgdfhghj</Save_location>
     <Browse_Save>Browse</Browse_Save>
     <Load_location>C:\Users\harrisonde\OneDrive - GXO\Desktop\Test\dicks</Load_location>
     <Browse_load>Browse</Browse_load>
     <Run>Run</Run>
-</authors>
+  </authors>
 </Authors_Table>

@@ -12,11 +12,20 @@ namespace QuerySaveApp
 {
     public partial class QuerySave : Form
     {
+        // column indexs \\
+        //0 - stored_procedure
+        //1 - save location
+        //2 - browse save
+        //3 - load location
+        //4 - browse load
+        //5 - run
+        //6 - settings
+
         public QuerySave()
         {
             InitializeComponent();
             //set Datasource and Datamember, both of these are required to return data.
-            dataGridView1.DataSource = XMLData.ReturnXMLDataset();
+            dataGridView1.DataSource = XMLData.ReturnXMLDataset(1);
             dataGridView1.DataMember = "Authors";
 
             ////add a button column and then add buttons to it
@@ -24,7 +33,7 @@ namespace QuerySaveApp
             //dataGridClass.addButtonColumn(dataGridView1, "Browse save location", "Run", "Savebutton", "Browse");
             //dataGridClass.addButtonColumn(dataGridView1, "Browse load location", "Run", "Loadbutton", "Browse");
             //dataGridClass.addButtonColumn(dataGridView1, "Run Report", "Run", "ReportButton", "Run");
-           // dataGridClass.SetColumnsOrder(dataGridView1, "Stored_Procedure", "Save_location", "Browse save location", "Load_location", "Browse load location");
+            //dataGridClass.SetColumnsOrder(dataGridView1, "Stored_Procedure", "Save_location", "Browse save location", "Load_location", "Browse load location");
             dataGridClass.DisableTableSorting(dataGridView1);
 
         }
@@ -36,7 +45,7 @@ namespace QuerySaveApp
 
             //what is this (dataset)
             DataSet ds = (DataSet)dataGridView1.DataSource;
-            ds.WriteXml(XMLData.getFilePath());
+            ds.WriteXml(XMLData.getFilePath(1));
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -62,6 +71,7 @@ namespace QuerySaveApp
 
                         }
                     }
+                //chose load loaction
                 else if (e.ColumnIndex == 4)
                 {
                     OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
@@ -73,22 +83,40 @@ namespace QuerySaveApp
                         dataGridView1[3, e.RowIndex].Value = file;
                     }
                 }
+                //run SQL - save to location
                 else if (e.ColumnIndex == 5)
                     {
-                        var returnedDT = SQLAcess.SQLtoDataTable(dataGridView1[2, e.RowIndex].Value.ToString()!);
+                    // return SQL into datatable
 
-                        var loadstring = @"C:\Users\harrisonde\OneDrive - GXO\Desktop\Test\Test.xlsx";
-                        var savestring = dataGridView1[3, e.RowIndex].Value.ToString()!;
-                        var workbookstring = "test";
+                        var returnedDT = SQLAcess.SQLtoDataTable(dataGridView1[0, e.RowIndex].Value.ToString()!);
+
+                    var SettingsDataset = XMLData.ReturnXMLDataset(2);
+                    
+
+                    richTextBox1.AppendText(SettingsDataset.Tables[0].Rows[0][0].ToString()!);
+
+                    //open this item
+                        var loadstring = dataGridView1[3, e.RowIndex].Value.ToString()!;
+                    //find the string for the workbook to paste into
+                    var workbookstring = SettingsDataset.Tables[0].Rows[e.RowIndex][0].ToString()!;              //get the fuckin string from the second xml dataset DO THIS
+                    //save it to this location
+                    var savestring = dataGridView1[1, e.RowIndex].Value.ToString()!;
+                   
 
                         GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);
                     }
+                else if (e.ColumnIndex == 6)
+                {
+                    Settings settingsform = new Settings();
+
+                    settingsform.Show();
+                }
 
 
             }
-            catch (ArgumentOutOfRangeException)
+            catch (Exception ex)
             {
-                richTextBox1.AppendText("Argument out of range");
+                richTextBox1.AppendText(ex.Message);
             }
 
         }

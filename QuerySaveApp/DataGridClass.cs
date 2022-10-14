@@ -74,7 +74,7 @@ namespace QuerySaveApp
 
                 for (int j = 0; j < dataGridView.ColumnCount; j++)
                 {
-                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Browse" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Run")
+                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Browse" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Run" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Settings")
                     {
                         //richTextBox1.AppendText(dataGridView.Rows[i].Cells[j].Value.ToString());
                         // Here is the trick.
