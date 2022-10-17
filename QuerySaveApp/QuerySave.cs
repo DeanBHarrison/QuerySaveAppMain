@@ -35,14 +35,12 @@ namespace QuerySaveApp
             //dataGridClass.addButtonColumn(dataGridView1, "Run Report", "Run", "ReportButton", "Run");
             //dataGridClass.SetColumnsOrder(dataGridView1, "Stored_Procedure", "Save_location", "Browse save location", "Load_location", "Browse load location");
             dataGridClass.DisableTableSorting(dataGridView1);
-
         }
  
         //Save Data button
         private void button2_Click(object sender, EventArgs e)
         {
             //SAVES THE DATASET.
-
             //what is this (dataset)
             DataSet ds = (DataSet)dataGridView1.DataSource;
             ds.WriteXml(XMLData.getFilePath(1));
@@ -50,29 +48,29 @@ namespace QuerySaveApp
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //writes the string to the console.
-           
+            //writes the string to the console.           
             // this enables you to access custom generated buttons,  DataGridViewCellEventArgs is passing information about the location of the pressed cell.
             // e.columnindex and e.rowindex can be used to access the specific cell.
             try
             {
                 richTextBox1.AppendText("\r\n" + dataGridView1[e.ColumnIndex, e.RowIndex].ToString()!);
                 //first coolumn is browse for save location column
-                if (e.ColumnIndex == 2)
+                if (((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName == "Browse_Save")
                     {
                         SaveFileDialog SaveFileDialog1 = new SaveFileDialog();
                         DialogResult result = SaveFileDialog1.ShowDialog(); // Show the dialog.
 
                         if (result == DialogResult.OK) // Test result.
                         {
-
                             string file = SaveFileDialog1.FileName;
-                            dataGridView1[1, e.RowIndex].Value = file;
+                        var index = dataGridView1.Columns["Save_Location"].Index;
+                        // need to make the value of the column with the index name "load_location" at the same row index.
+                        dataGridView1[index, e.RowIndex].Value = file;
 
                         }
                     }
                 //chose load loaction
-                else if (e.ColumnIndex == 4)
+                else if (((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName == "Browse_load")
                 {
                     OpenFileDialog OpenFileDialog1 = new OpenFileDialog();
                     DialogResult result = OpenFileDialog1.ShowDialog(); // Show the dialog.
@@ -80,35 +78,32 @@ namespace QuerySaveApp
                     if (result == DialogResult.OK) // Test result.
                     {
                         string file = OpenFileDialog1.FileName;
-                        dataGridView1[3, e.RowIndex].Value = file;
+                        var index = dataGridView1.Columns["Load_Location"].Index;
+                        dataGridView1[index, e.RowIndex].Value = file;
                     }
                 }
-                //run SQL - save to location
-                else if (e.ColumnIndex == 5)
+                //run SQL - save to location, workbook
+                else if (((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName == "Run")
                     {
                     // return SQL into datatable
+                    var returnedDT = SQLAcess.SQLtoDataTable(dataGridView1[0, e.RowIndex].Value.ToString()!);
 
-                        var returnedDT = SQLAcess.SQLtoDataTable(dataGridView1[0, e.RowIndex].Value.ToString()!);
+                    //find item to open
+                    string loadstring = DataGridClass.CellColumn(dataGridView1, "Load_Location", e.RowIndex);
 
-                    var SettingsDataset = XMLData.ReturnXMLDataset(2);
-                    
+                    //finds workbook to paste into.
+                    var SettingsDataset = XMLData.ReturnXMLDataset(2);       
+                    var workbookstring = XMLData.returnXMLcellwithcolumnname(SettingsDataset, "Data_Dump_Worksheet_name", e.RowIndex);
 
-                    richTextBox1.AppendText(SettingsDataset.Tables[0].Rows[0][0].ToString()!);
+                    //find location to save it
+                    string savestring = DataGridClass.CellColumn(dataGridView1, "Save_location", e.RowIndex);
 
-                    //open this item
-                        var loadstring = dataGridView1[3, e.RowIndex].Value.ToString()!;
-                    //find the string for the workbook to paste into
-                    var workbookstring = SettingsDataset.Tables[0].Rows[e.RowIndex][0].ToString()!;              //get the fuckin string from the second xml dataset DO THIS
-                    //save it to this location
-                    var savestring = dataGridView1[1, e.RowIndex].Value.ToString()!;
-                   
-
-                        GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);
+                    //execute export to excel, with the locations saved from above.
+                    GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);
                     }
-                else if (e.ColumnIndex == 6)
+                else if (((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName == "Settings")
                 {
                     Settings settingsform = new Settings();
-
                     settingsform.Show();
                 }
 
@@ -116,17 +111,15 @@ namespace QuerySaveApp
             }
             catch (Exception ex)
             {
-                richTextBox1.AppendText(ex.Message);
+               richTextBox1.AppendText(ex.Message);
             }
-
         }
 
         private void QuerySave_Load(object sender, EventArgs e)
         {
-
             //load buttons.
-            DataGridClass dataGridClass = new DataGridClass();
-            dataGridClass.LoadButtons(dataGridView1);
+           // DataGridClass dataGridClass = new DataGridClass();
+            DataGridClass.LoadButtons(dataGridView1);
         }
     }
 }

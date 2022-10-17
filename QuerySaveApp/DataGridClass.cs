@@ -34,9 +34,7 @@ namespace QuerySaveApp
             btnColumn.DefaultCellStyle = new DataGridViewCellStyle()
             {
                 NullValue = visibleName
-            };
-
-        
+            };       
         }
 
 
@@ -56,7 +54,7 @@ namespace QuerySaveApp
             datagrid.Columns.Add(inputtablecombobox);   
         }
 
-        public  void SetColumnsOrder(DataGridView datagrid, params String[] columnNames)
+        public  static void SetColumnsOrder(DataGridView datagrid, params String[] columnNames)
         {
             int columnIndex = 0;
             foreach (var columnName in columnNames)
@@ -67,7 +65,7 @@ namespace QuerySaveApp
         }
 
         
-        public void LoadButtons(DataGridView dataGridView)
+        public static void LoadButtons(DataGridView dataGridView)
         {
             for (int i = 0; i < dataGridView.RowCount; i++)
             {
@@ -83,6 +81,14 @@ namespace QuerySaveApp
                     }
                 }
             }
+        }
+
+        public static string CellColumn(DataGridView dataGridView1, string ColumnName, int Index)
+        {
+            var loadindex = dataGridView1.Columns[ColumnName].Index;
+            var loadstring = dataGridView1[loadindex, Index].Value.ToString()!;
+
+            return loadstring;
         }
 
 

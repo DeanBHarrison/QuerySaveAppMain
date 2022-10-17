@@ -10,6 +10,8 @@ namespace QuerySaveApp
 {
     public static class XMLData
     {        
+
+        //RETARDED
         public static string getFilePath(int filenumber)
         {          
 
@@ -28,10 +30,12 @@ namespace QuerySaveApp
             }
             else
             {
-                return "Incorrect Filepath";
+                return "Incorrect xml data Filepath";
             }
         }
 
+
+        //THIS METHOD IS RETARDED
          public static DataSet ReturnXMLDataset(int filenumber)
         {          
             DataSet XMLDATASET = new DataSet();
@@ -45,6 +49,13 @@ namespace QuerySaveApp
             ds.WriteXml(XMLData.getFilePath(XMLint));
         }
 
+
+        public static string returnXMLcellwithcolumnname(DataSet dataset, string worksheet, int index)
+        {
+          string returnString =  dataset.Tables[0].Rows[index][worksheet].ToString()!;
+
+            return returnString;
+        }
 
         public static void test()
         {
