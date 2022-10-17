@@ -112,6 +112,7 @@ namespace QuerySaveApp
             catch (Exception ex)
             {
                richTextBox1.AppendText(ex.Message);
+                //Your Excel object).Application.Interactive = false;  try this
             }
         }
 
