@@ -28,7 +28,6 @@ namespace QuerySaveApp
             DataTable dataTable = new DataTable();
 
             dataAdapter.Fill(dataTable);
-
             return dataTable;
         }
     }

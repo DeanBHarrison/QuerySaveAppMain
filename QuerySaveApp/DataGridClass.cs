@@ -9,9 +9,8 @@ namespace QuerySaveApp
     internal class DataGridClass
     {
         
-
         //function to disable column sorting on a given datagridview.
-        public void DisableTableSorting(DataGridView datagrid)
+        public  static void DisableTableSorting(DataGridView datagrid)
         {
             //disable sorting for each column
             foreach (DataGridViewColumn column in datagrid.Columns)
@@ -30,7 +29,6 @@ namespace QuerySaveApp
             //btnColumn.Text = buttonTxt;
             //btnColumn.Name = buttonname;
             btnColumn.UseColumnTextForButtonValue = false;
-
             btnColumn.DefaultCellStyle = new DataGridViewCellStyle()
             {
                 NullValue = visibleName
@@ -69,7 +67,6 @@ namespace QuerySaveApp
         {
             for (int i = 0; i < dataGridView.RowCount; i++)
             {
-
                 for (int j = 0; j < dataGridView.ColumnCount; j++)
                 {
                     if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Browse" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Run" || dataGridView.Rows[i].Cells[j].Value.ToString() == "Settings")
@@ -83,6 +80,24 @@ namespace QuerySaveApp
             }
         }
 
+        //HERE
+        public static void LoadCombocells(DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.RowCount; i++)
+            {
+                for (int j = 0; j < dataGridView.ColumnCount; j++)
+                {
+                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Yes" || dataGridView.Rows[i].Cells[j].Value.ToString() == "No" )
+                    {
+                        //richTextBox1.AppendText(dataGridView.Rows[i].Cells[j].Value.ToString());
+                        // Here is the trick.
+                        var combobtnCell = new DataGridViewComboBoxCell();
+                        dataGridView.Rows[i].Cells[j] = combobtnCell;
+                    }
+                }
+            }
+        }
+
         public static string CellColumn(DataGridView dataGridView1, string ColumnName, int Index)
         {
             var loadindex = dataGridView1.Columns[ColumnName].Index;
@@ -91,9 +106,12 @@ namespace QuerySaveApp
             return loadstring;
         }
 
+        public static string SaveLocationReturn(DataGridView dataGridView1, string ColumnName, int Index)
+        {
+            var loadindex = dataGridView1.Columns[ColumnName].Index;
+            var loadstring = dataGridView1[loadindex, Index].Value.ToString()!;
 
-
-      
-
+            return loadstring;
+        }
     }
 }

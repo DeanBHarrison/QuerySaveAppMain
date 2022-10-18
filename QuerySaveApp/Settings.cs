@@ -21,17 +21,12 @@ namespace QuerySaveApp
             dataGridView1.DataMember = "Authors";
 
             ////add a button column and then add buttons to it
-            DataGridClass dataGridClass = new DataGridClass();
-            //dataGridClass.addButtonColumn(dataGridView1, "Browse save location", "Run", "Savebutton", "Browse");
-            //dataGridClass.addButtonColumn(dataGridView1, "Browse load location", "Run", "Loadbutton", "Browse");
-            //dataGridClass.addButtonColumn(dataGridView1, "Run Report", "Run", "ReportButton", "Run");
-            // dataGridClass.SetColumnsOrder(dataGridView1, "Stored_Procedure", "Save_location", "Browse save location", "Load_location", "Browse load location");
-            dataGridClass.DisableTableSorting(dataGridView1);
+            DataGridClass.DisableTableSorting(dataGridView1);
         }
 
         private void Form2_Load(object sender, EventArgs e)
-        {
-
+        {   
+            //DataGridClass.LoadCombocells(dataGridView1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,6 +36,9 @@ namespace QuerySaveApp
             //what is this (dataset)
             DataSet ds = (DataSet)dataGridView1.DataSource;
             ds.WriteXml(XMLData.getFilePath(2));
+
+            DataGridClass.LoadCombocells(dataGridView1);
+
         }
     }
 }

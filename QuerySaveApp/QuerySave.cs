@@ -28,29 +28,19 @@ namespace QuerySaveApp
             dataGridView1.DataSource = XMLData.ReturnXMLDataset(1);
             dataGridView1.DataMember = "Authors";
 
-            ////add a button column and then add buttons to it
-            DataGridClass dataGridClass = new DataGridClass();
-            //dataGridClass.addButtonColumn(dataGridView1, "Browse save location", "Run", "Savebutton", "Browse");
-            //dataGridClass.addButtonColumn(dataGridView1, "Browse load location", "Run", "Loadbutton", "Browse");
-            //dataGridClass.addButtonColumn(dataGridView1, "Run Report", "Run", "ReportButton", "Run");
-            //dataGridClass.SetColumnsOrder(dataGridView1, "Stored_Procedure", "Save_location", "Browse save location", "Load_location", "Browse load location");
-            dataGridClass.DisableTableSorting(dataGridView1);
+            ////add a button column and then add buttons to it        
+            DataGridClass.DisableTableSorting(dataGridView1);
         }
- 
+
         //Save Data button
         private void button2_Click(object sender, EventArgs e)
         {
-            //SAVES THE DATASET.
-            //what is this (dataset)
             DataSet ds = (DataSet)dataGridView1.DataSource;
             ds.WriteXml(XMLData.getFilePath(1));
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            //writes the string to the console.           
-            // this enables you to access custom generated buttons,  DataGridViewCellEventArgs is passing information about the location of the pressed cell.
-            // e.columnindex and e.rowindex can be used to access the specific cell.
             try
             {
                 richTextBox1.AppendText("\r\n" + dataGridView1[e.ColumnIndex, e.RowIndex].ToString()!);
@@ -66,7 +56,6 @@ namespace QuerySaveApp
                         var index = dataGridView1.Columns["Save_Location"].Index;
                         // need to make the value of the column with the index name "load_location" at the same row index.
                         dataGridView1[index, e.RowIndex].Value = file;
-
                         }
                     }
                 //chose load loaction
@@ -91,7 +80,8 @@ namespace QuerySaveApp
                     //find item to open
                     string loadstring = DataGridClass.CellColumn(dataGridView1, "Load_Location", e.RowIndex);
 
-                    //finds workbook to paste into.
+                    //finds workbook to paste into. THIS METHOD looks to the second XML dataset on the other form.
+                    //this can be used to return a cell straight from an XML dataset, skipping the requirement of it to be a datagridview first.
                     var SettingsDataset = XMLData.ReturnXMLDataset(2);       
                     var workbookstring = XMLData.returnXMLcellwithcolumnname(SettingsDataset, "Data_Dump_Worksheet_name", e.RowIndex);
 
@@ -100,21 +90,21 @@ namespace QuerySaveApp
 
                     //execute export to excel, with the locations saved from above.
                     GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                     }
                 else if (((DataGridView)sender).Columns[e.ColumnIndex].DataPropertyName == "Settings")
                 {
                     Settings settingsform = new Settings();
                     settingsform.Show();
                 }
-
-
-            }
+        }
             catch (Exception ex)
             {
                richTextBox1.AppendText(ex.Message);
                 //Your Excel object).Application.Interactive = false;  try this
             }
-        }
+}
 
         private void QuerySave_Load(object sender, EventArgs e)
         {
