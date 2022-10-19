@@ -87,6 +87,8 @@ namespace QuerySaveApp
 
                     //find location to save it
                     string savestring = DataGridClass.CellColumn(dataGridView1, "Save_location", e.RowIndex);
+                    var savestringcheck = XMLData.returnXMLcellwithcolumnname(SettingsDataset, "Save_new_file_each_time", e.RowIndex);
+
 
                     //execute export to excel, with the locations saved from above.
                     GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);

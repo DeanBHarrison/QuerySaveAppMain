@@ -19,7 +19,6 @@ namespace QuerySaveApp
             }
         }
 
-
         //add a button column and then add buttons to it
         public void addButtonColumn(DataGridView datagrid, String Columnname, string buttonTxt, string buttonname, string visibleName)
         {
@@ -87,12 +86,12 @@ namespace QuerySaveApp
             {
                 for (int j = 0; j < dataGridView.ColumnCount; j++)
                 {
-                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Yes" || dataGridView.Rows[i].Cells[j].Value.ToString() == "No" )
+                    if (dataGridView.Rows[i].Cells[j].Value.ToString() == "Yes" || dataGridView.Rows[i].Cells[j].Value.ToString() == "No")
                     {
-                        //richTextBox1.AppendText(dataGridView.Rows[i].Cells[j].Value.ToString());
-                        // Here is the trick.
-                        var combobtnCell = new DataGridViewComboBoxCell();
-                        dataGridView.Rows[i].Cells[j] = combobtnCell;
+                        var btnCell = new DataGridViewComboBoxCell();
+                        dataGridView.Rows[i].Cells[j] = btnCell;
+                        btnCell.Items.Add("Yes");
+                        btnCell.Items.Add("No");
                     }
                 }
             }
@@ -112,6 +111,18 @@ namespace QuerySaveApp
             var loadstring = dataGridView1[loadindex, Index].Value.ToString()!;
 
             return loadstring;
+        }
+
+        public static string ReturnFileSaveName(string yesno)
+        {
+            if(yesno == "Yes")
+            {
+                return DateTime.Now.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

@@ -15,29 +15,30 @@ namespace QuerySaveApp
         public Settings()
         {
             InitializeComponent();
-
             //set Datasource and Datamember, both of these are required to return data.
             dataGridView1.DataSource = XMLData.ReturnXMLDataset(2);
             dataGridView1.DataMember = "Authors";
-
-            ////add a button column and then add buttons to it
+            //add a button column and then add buttons to it
             DataGridClass.DisableTableSorting(dataGridView1);
         }
 
         private void Form2_Load(object sender, EventArgs e)
-        {   
-            //DataGridClass.LoadCombocells(dataGridView1);
+        {
+            richTextBox1.AppendText("bullshit");
+            DataGridClass.LoadCombocells(dataGridView1);
         }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //SAVES THE DATASET.
-
             //what is this (dataset)
             DataSet ds = (DataSet)dataGridView1.DataSource;
             ds.WriteXml(XMLData.getFilePath(2));
-
             DataGridClass.LoadCombocells(dataGridView1);
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }
