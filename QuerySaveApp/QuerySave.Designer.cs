@@ -84,7 +84,7 @@
         #endregion
 
         private DataGridView dataGridView1;
-        private RichTextBox richTextBox1;
+        public  RichTextBox richTextBox1;
         private Button button2;
     }
 }

@@ -41,6 +41,7 @@ namespace QuerySaveApp
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            
             try
             {
                 richTextBox1.AppendText("\r\n" + dataGridView1[e.ColumnIndex, e.RowIndex].ToString()!);
@@ -82,13 +83,15 @@ namespace QuerySaveApp
 
                     //finds workbook to paste into. THIS METHOD looks to the second XML dataset on the other form.
                     //this can be used to return a cell straight from an XML dataset, skipping the requirement of it to be a datagridview first.
-                    var SettingsDataset = XMLData.ReturnXMLDataset(2);       
-                    var workbookstring = XMLData.returnXMLcellwithcolumnname(SettingsDataset, "Data_Dump_Worksheet_name", e.RowIndex);
+                    var SettingsDataset2 = XMLData.ReturnXMLDataset(2);
+                    var SettingsDataset1 = XMLData.ReturnXMLDataset(1);
+                 
+                    var workbookstring = XMLData.returnXMLcellwithcolumnname(SettingsDataset2, "Data_Dump_Worksheet_name", e.RowIndex);
 
-                    //find location to save it
-                    string savestring = DataGridClass.CellColumn(dataGridView1, "Save_location", e.RowIndex);
-                    var savestringcheck = XMLData.returnXMLcellwithcolumnname(SettingsDataset, "Save_new_file_each_time", e.RowIndex);
+                    //find location to save it, if yes is selected on form 2 it needs to add todays date at the start
 
+                    var savestring = XMLData.SaveNamebuilder(e.RowIndex);
+                    richTextBox1.AppendText("FUCK" + savestring);
 
                     //execute export to excel, with the locations saved from above.
                     GXOMIClassLibrary.My_DataTable_Extensions.ExportToExcelDetailed(returnedDT, loadstring, workbookstring, savestring);
@@ -113,6 +116,9 @@ namespace QuerySaveApp
             //load buttons.
            // DataGridClass dataGridClass = new DataGridClass();
             DataGridClass.LoadButtons(dataGridView1);
+     
         }
+
+   
     }
 }

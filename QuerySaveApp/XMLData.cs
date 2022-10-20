@@ -82,5 +82,28 @@ namespace QuerySaveApp
                 }
             }
         }
+
+        public static string SaveNamebuilder(int rowIndex)
+        {
+
+            
+            var savestring = XMLData.returnXMLcellwithcolumnname(XMLData.ReturnXMLDataset(1), "Save_location", rowIndex);
+            var savestringcheck = XMLData.returnXMLcellwithcolumnname(XMLData.ReturnXMLDataset(2), "Save_new_file_each_time", rowIndex);
+
+            if(savestringcheck == "No")
+            {
+                QuerySave querySave = new QuerySave();
+                querySave.richTextBox1.AppendText(savestring);
+                return savestring;             
+            }
+            else
+            {
+                return savestring + DateTime.Now.ToString("dd-MM-yyyy");
+            }
+
+            
+        }
+            
+
     }
 }
